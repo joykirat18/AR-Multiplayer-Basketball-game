@@ -1,0 +1,96 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+public class Shoot : MonoBehaviour
+{
+	// public GameObject ball;
+	// private Vector3 throwSpeed = new Vector3(0, 26, 40); //This value is a sure basket
+	// public Vector3 ballPos;
+	// private bool thrown = false;
+	// private GameObject ballClone;
+	// public Button shootbutton;
+
+	// public GameObject availableShotsGO;
+	// private int availableShots = 5;
+
+	// public GameObject meter;
+	// public GameObject arrow;
+	// private float arrowSpeed = 0.3f; //Difficulty
+	// private bool right = true;
+
+	// private GameObject gameOver;
+
+	// // Use this for initialization
+	// void Start()
+	// {
+	// 	/* Increase Gravity */
+	// 	// Physics.gravity = new Vector3(0, -20, 0);
+	// 	// shootbutton.SetActive(true);
+	// }
+
+	// void FixedUpdate()
+	// {
+	// 	/* Move Meter Arrow */
+
+	// 	if (arrow.transform.position.x < 4.7f && right)
+	// 	{
+	// 		arrow.transform.position += new Vector3(arrowSpeed, 0, 0);
+	// 	}
+	// 	if (arrow.transform.position.x >= 4.7f)
+	// 	{
+	// 		right = false;
+	// 	}
+	// 	if (right == false)
+	// 	{
+	// 		arrow.transform.position -= new Vector3(arrowSpeed, 0, 0);
+	// 	}
+	// 	if (arrow.transform.position.x <= -4.7f)
+	// 	{
+	// 		right = true;
+	// 	}
+
+	// 	/* Shoot ball on Tap */
+
+	// 	shootbutton.onClick.AddListener(ShootBall);
+
+	// 	/* Remove Ball when it hits the floor */
+
+	// 	if (ballClone != null && ballClone.transform.position.y < -16)
+	// 	{
+	// 		Destroy(ballClone);
+	// 		thrown = false;
+	// 		throwSpeed = new Vector3(0, 26, 40);//Reset perfect shot variable
+
+	// 		/* Check if out of shots */
+
+	// 		if (availableShots == 0)
+	// 		{
+	// 			arrow.GetComponent<Renderer>().enabled = false;
+	// 			Instantiate(gameOver, new Vector3(0.31f, 0.2f, 0), transform.rotation);
+	// 			Invoke("restart", 2);
+	// 		}
+	// 	}
+	// }
+	// void ShootBall()
+	// {
+	// 	if (!thrown)
+	// 	{
+	// 		thrown = true;
+	// 		// availableShots--;
+	// 		// availableShotsGO.GetComponent<GUIText>().text = availableShots.ToString();
+
+	// 		ballClone = Instantiate(ball, shootbutton.transform.position, transform.rotation) as GameObject;
+	// 		throwSpeed.y = throwSpeed.y + arrow.transform.position.x;
+	// 		throwSpeed.z = throwSpeed.z + arrow.transform.position.x;
+	// 		Debug.Log("ball created");
+	// 		ballClone.GetComponent<Rigidbody>().AddForce(throwSpeed, ForceMode.Impulse);
+	// 		// GetComponent<AudioSource>().Play();
+	// 	}
+	// }
+
+
+	// void restart()
+	// {
+	// 	Application.LoadLevel(Application.loadedLevel);
+	// }
+}

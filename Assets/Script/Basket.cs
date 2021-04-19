@@ -15,8 +15,8 @@ public class Basket : MonoBehaviour
 
 	void OnTriggerEnter()
 	{
-		int currentScore = int.Parse(buttonQueries.ScoreText.text) + 1;
-		buttonQueries.ScoreText.text = currentScore.ToString();
+		int currentScore = int.Parse(ScoreText.text) + 1;
+		ScoreText.text = currentScore.ToString();
 		AudioSource.PlayClipAtPoint(basket, transform.position);
 	}
 }

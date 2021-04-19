@@ -9,6 +9,7 @@ public class buttonQueries : MonoBehaviour
 	public GameObject PlacementIndicator;
 	public GameObject basketBallRing;
 	public GameObject StartButton;
+	public GameObject ball;
 	// public static Text ScoreText;
 
 	private PlacementIndicator placementIndicator;
@@ -21,6 +22,7 @@ public class buttonQueries : MonoBehaviour
 	{
 		placementIndicator = FindObjectOfType<PlacementIndicator>();
 		GameObject obj = Instantiate(basketBallRing, placementIndicator.transform.position, placementIndicator.transform.rotation);
+		GameObject b = Instantiate(ball, StartButton.transform.position, StartButton.transform.rotation);
 		Destroy(PlacementIndicator);
 		StartButton.SetActive(false);
 	}
