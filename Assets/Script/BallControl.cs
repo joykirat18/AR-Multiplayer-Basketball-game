@@ -34,7 +34,7 @@ public class BallControl : MonoBehaviour
 		m_SessionOrigin = GameObject.Find("AR Session Origin").GetComponent<ARSessionOrigin>();
 		ARCam = m_SessionOrigin.transform.Find("AR Camera").gameObject;
 		transform.parent = ARCam.transform;
-		Physics.gravity = new Vector3(0, -20, 0);
+		// Physics.gravity = new Vector3(0, -20, 0);
 		ResetBall();
 	}
 
@@ -64,6 +64,7 @@ public class BallControl : MonoBehaviour
 			ARCam.transform.up * direction.y * m_ThrowDirectionY +
 			ARCam.transform.right * direction.x * m_ThrowDirectionX);
 
+			rb.AddForce(Physics.gravity, ForceMode.Acceleration);
 			startTime = 0.0f;
 			duration = 0.0f;
 

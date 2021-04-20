@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2236f4141694f8b8accc6166d1d05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CameraManager: {fileID: 282840816}
+  m_CameraManager: {fileID: 0}
   m_PlaneManager: {fileID: 1335839537}
   m_MoveDeviceAnimation: {fileID: 1405370717}
   m_TapToPlaceAnimation: {fileID: 1800599825}
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PointCloudPrefab: {fileID: 1854016325464908, guid: 7824c92c85ab1411892b97daba77b3de, type: 3}
+  m_PointCloudPrefab: {fileID: 8560889805547194450, guid: ca0b98b347d04431c8466e5d017541d4, type: 3}
 --- !u!114 &1335839537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 1585201990951412, guid: 9a6a8299a326e43e6861cb9d5be3b61b, type: 3}
+  m_PlanePrefab: {fileID: 527626386524602317, guid: 85b42865a09c743328cdd0b0f3fe8d85, type: 3}
   m_DetectionMode: -1
 --- !u!114 &1335839538
 MonoBehaviour:
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HoopPrefab: {fileID: 6648874510279052791, guid: 926090b7cdcb842d9b05f8d5072ede96, type: 3}
-  m_BallPrefab: {fileID: 2532552767605401785, guid: edb8e12b534bc45b8a0d8ffbb8439c9c, type: 3}
+  m_BallPrefab: {fileID: 7440980958250802512, guid: 90ee577e80b7d4a5093f3fdfbd4c07be, type: 3}
 --- !u!1 &1405370715
 GameObject:
   m_ObjectHideFlags: 0
