@@ -1242,6 +1242,7 @@ GameObject:
   - component: {fileID: 4819216872875916072}
   - component: {fileID: -5254230970226154515}
   - component: {fileID: -3171762835351633235}
+  - component: {fileID: 4442106152535692426}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1330,6 +1331,21 @@ MonoBehaviour:
   m_BallCameraOffset: {x: 0, y: -0.4, z: 1}
   ARCam: {fileID: 0}
   m_SessionOrigin: {fileID: 0}
+--- !u!114 &4442106152535692426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2532552767605401785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793f41d72097744c281dd3e50823f1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 100
+  doSpin: 1
+  playerGraphics: {fileID: 2532552767605401785}
 --- !u!1 &2533019483054082190
 GameObject:
   m_ObjectHideFlags: 0

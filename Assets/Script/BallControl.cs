@@ -58,7 +58,7 @@ public class BallControl : MonoBehaviour
 		if (directionChosen)
 		{
 			rb.mass = 1;
-			rb.useGravity = true;
+			// rb.useGravity = true;
 
 			rb.AddForce(ARCam.transform.forward * m_ThrowForce / duration +
 			ARCam.transform.up * direction.y * m_ThrowDirectionY +
@@ -84,7 +84,7 @@ public class BallControl : MonoBehaviour
 	public void ResetBall()
 	{
 		rb.mass = 0;
-		rb.useGravity = false;
+		// rb.useGravity = false;
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
 		endTime = 0.0f;
