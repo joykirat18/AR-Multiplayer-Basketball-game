@@ -385,9 +385,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnEnterGameButtonClicked
+      - m_Target: {fileID: 678571470}
+        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
+        m_MethodName: onEnterGameButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -826,6 +826,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1df3eea469140eebaf7f44cb1b2e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNameInputField: {fileID: 897141428}
+  uI_LoginGameObject: {fileID: 1867033495}
+  uI_LobbyGameObject: {fileID: 678248421}
+  uI_3DGameObject: {fileID: 213413509}
+  uI_ConnectionStatusGameObject: {fileID: 644936267}
+  connectionStatusText: {fileID: 1209188605}
+  showConnectionStatus: 0
 --- !u!4 &678571471
 Transform:
   m_ObjectHideFlags: 0
@@ -2195,8 +2202,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 678571470}
+        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
         m_MethodName: OnQuickMatchButtonClicked
         m_Mode: 1
         m_Arguments:
