@@ -367,7 +367,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1802076417165274031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: -4411805129530057773}
   - component: {fileID: 7701540833309502969}
   - component: {fileID: 8800483858729739375}
+  - component: {fileID: -1167115645768076198}
   m_Layer: 0
   m_Name: Player2_Attacker
   m_TagString: Player
@@ -763,6 +764,30 @@ MonoBehaviour:
   synchronizeAngularVelocity: 1
   isTeleportEnabled: 1
   teleportIfDistanceGreaterThan: 1
+--- !u!114 &-1167115645768076198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802076417471478439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26091cf8e248440fc8cac49fa5d52e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinnerScript: {fileID: 1060949073616959121}
+  uI_3D_Gameobject: {fileID: 0}
+  deathPanelUIPrefab: {fileID: 3593783272886976281, guid: 0367e5d2c0c49da4b80c7fe1c169056c, type: 3}
+  spinSpeedBar_Image: {fileID: 0}
+  spinSpeedRatio_Text: {fileID: 0}
+  common_Damage_Coefficient: 0.04
+  isAttacker: 0
+  isDefender: 0
+  doDamage_Coefficient_Attacker: 10
+  getDamaged_Coefficient_Attacker: 1.2
+  doDamage_Coefficient_Defender: 0.75
+  getDamaged_Coefficient_Defender: 0.2
 --- !u!1 &1802076418753269999
 GameObject:
   m_ObjectHideFlags: 0

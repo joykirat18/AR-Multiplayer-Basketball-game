@@ -17,6 +17,8 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 	public bool isTeleportEnabled = true;
 	public float teleportIfDistanceGreaterThan = 1.0f;
 
+
+	private GameObject battleArenaGameobject;
 	private float distance;
 	private float angle;
 
@@ -27,6 +29,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 
 		networkedPosition = new Vector3();
 		networkedRotation = new Quaternion();
+		battleArenaGameobject = GameObject.Find("BattleArena");
 
 
 	}
@@ -47,7 +50,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 	{
 		if (stream.IsWriting)
 		{
-			stream.SendNext(rb.position);
+			stream.SendNext(rb.position - battleArenaGameobject.transform.position);
 			stream.SendNext(rb.rotation);
 			if (synchronizeVelocity)
 			{
@@ -61,7 +64,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 		else
 		{
 
-			networkedPosition = (Vector3)stream.ReceiveNext();
+			networkedPosition = (Vector3)stream.ReceiveNext() + battleArenaGameobject.transform.position;
 			networkedRotation = (Quaternion)stream.ReceiveNext();
 
 			if (isTeleportEnabled)
