@@ -27,8 +27,8 @@ public class PlayerSelectionManager : MonoBehaviour
 	#region UNITY Methods
 	void Start()
 	{
-		uI_Selection.SetActive(true);
-		uI_AfterSelection.SetActive(false);
+		// uI_Selection.SetActive(true);
+		uI_AfterSelection.SetActive(true);
 		playerSelectionNumber = 0;
 	}
 
@@ -102,11 +102,11 @@ public class PlayerSelectionManager : MonoBehaviour
 		PhotonNetwork.LocalPlayer.SetCustomProperties(playerSelectionProp);
 	}
 
-	public void OnReSelectButtonClicked()
-	{
-		uI_Selection.SetActive(true);
-		uI_AfterSelection.SetActive(false);
-	}
+	// public void OnReSelectButtonClicked()
+	// {
+	// 	uI_Selection.SetActive(true);
+	// 	uI_AfterSelection.SetActive(false);
+	// }
 
 	public void OnBattleButtonClicked()
 	{

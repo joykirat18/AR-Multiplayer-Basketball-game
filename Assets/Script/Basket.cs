@@ -3,11 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using Photon.Pun;
+using TMPro;
 public class Basket : MonoBehaviour
 {
 	// public GameObject score;
 	public AudioClip basket;
-	public Text ScoreText;
+	public TextMeshProUGUI ScoreText;
+
 	void OnCollisionEnter()
 	{
 		GetComponent<AudioSource>().Play();

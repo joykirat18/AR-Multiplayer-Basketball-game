@@ -29,7 +29,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 
 		networkedPosition = new Vector3();
 		networkedRotation = new Quaternion();
-		battleArenaGameobject = GameObject.Find("BattleArena");
+		battleArenaGameobject = GameObject.Find("Court");
 
 
 	}

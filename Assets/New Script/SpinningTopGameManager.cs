@@ -15,6 +15,7 @@ public class SpinningTopGameManager : MonoBehaviourPunCallbacks
 	public GameObject adjust_button;
 	public GameObject rayCasrCenterImage;
 
+	public TextMeshProUGUI OpponentPlayerName;
 
 	// Start is called before the first frame update
 	void Start()

@@ -7,242 +7,243 @@ using TMPro;
 
 public class BattleScript : MonoBehaviourPun
 {
-    public Spinner spinnerScript;
+	public Spinner spinnerScript;
 
-    public GameObject uI_3D_Gameobject;
-    public GameObject deathPanelUIPrefab;
-    private GameObject deathPanelUIGameobject;
+	public GameObject uI_3D_Gameobject;
+	public GameObject deathPanelUIPrefab;
+	private GameObject deathPanelUIGameobject;
 
 
-    private Rigidbody rb;
+	private Rigidbody rb;
 
-    private float startSpinSpeed;
-    private float currentSpinSpeed;
-    public Image spinSpeedBar_Image;
-    public TextMeshProUGUI spinSpeedRatio_Text;
+	private float startSpinSpeed;
+	private float currentSpinSpeed;
+	public Image spinSpeedBar_Image;
+	public TextMeshProUGUI spinSpeedRatio_Text;
 
 
-    public float common_Damage_Coefficient = 0.04f;
+	public float common_Damage_Coefficient = 0.04f;
 
-    public bool isAttacker;
-    public bool isDefender;
-    private bool isDead = false;
+	public bool isAttacker;
+	public bool isDefender;
+	private bool isDead = false;
 
 
-    [Header("Player Type Damage Coefficients")]
-    public float doDamage_Coefficient_Attacker = 10f; //do more damage than defender- ADVANTAGE
-    public float getDamaged_Coefficient_Attacker = 1.2f;// gets more damage - DISADVANTAGE
+	[Header("Player Type Damage Coefficients")]
+	public float doDamage_Coefficient_Attacker = 10f; //do more damage than defender- ADVANTAGE
+	public float getDamaged_Coefficient_Attacker = 1.2f;// gets more damage - DISADVANTAGE
 
-    public float doDamage_Coefficient_Defender = 0.75f; //do less damage- DISADVANTAGE
-    public float getDamaged_Coefficient_Defender = 0.2f; //gets less damage - ADVANTAGE
+	public float doDamage_Coefficient_Defender = 0.75f; //do less damage- DISADVANTAGE
+	public float getDamaged_Coefficient_Defender = 0.2f; //gets less damage - ADVANTAGE
 
 
-    private void Awake()
-    {
-        startSpinSpeed = spinnerScript.spinSpeed;
-        currentSpinSpeed = spinnerScript.spinSpeed;
+	private void Awake()
+	{
+		startSpinSpeed = spinnerScript.spinSpeed;
+		currentSpinSpeed = spinnerScript.spinSpeed;
 
-        spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
+		spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
 
-    }
+	}
 
-    private void CheckPlayerType()
-    {
-        if (gameObject.name.Contains("Attacker"))
-        {
-            isAttacker = true;
-            isDefender = false;
+	private void CheckPlayerType()
+	{
+		if (gameObject.name.Contains("Attacker"))
+		{
+			isAttacker = true;
+			isDefender = false;
 
 
-        }else if (gameObject.name.Contains("Defender"))
-        {
-            isDefender = true;
-            isAttacker = false;
+		}
+		else if (gameObject.name.Contains("Defender"))
+		{
+			isDefender = true;
+			isAttacker = false;
 
-            spinnerScript.spinSpeed = 4400;
+			spinnerScript.spinSpeed = 4400;
 
-            startSpinSpeed = spinnerScript.spinSpeed;
-            currentSpinSpeed = spinnerScript.spinSpeed;
+			startSpinSpeed = spinnerScript.spinSpeed;
+			currentSpinSpeed = spinnerScript.spinSpeed;
 
-            spinSpeedRatio_Text.text = currentSpinSpeed + "/" + startSpinSpeed;
+			spinSpeedRatio_Text.text = currentSpinSpeed + "/" + startSpinSpeed;
 
-        }
-    }
+		}
+	}
 
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
+	private void OnCollisionEnter(Collision collision)
+	{
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
+		if (collision.gameObject.CompareTag("Player"))
+		{
 
-            //Comparing the speeds of the SPinnerTops
-            float mySpeed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-            float otherPlayerSpeed = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+			//Comparing the speeds of the SPinnerTops
+			float mySpeed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+			float otherPlayerSpeed = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
 
-            Debug.Log("My speed: "+ mySpeed+ " -----Other player speed: "+ otherPlayerSpeed);
+			Debug.Log("My speed: " + mySpeed + " -----Other player speed: " + otherPlayerSpeed);
 
-            if (mySpeed>otherPlayerSpeed)
-            {
-                Debug.Log(" You DAMAGE the other player.");
-                float default_Damage_Amount = gameObject.GetComponent<Rigidbody>().velocity.magnitude * 3600f * common_Damage_Coefficient;
+			if (mySpeed > otherPlayerSpeed)
+			{
+				Debug.Log(" You DAMAGE the other player.");
+				float default_Damage_Amount = gameObject.GetComponent<Rigidbody>().velocity.magnitude * 3600f * common_Damage_Coefficient;
 
-                if (isAttacker)
-                {
-                    default_Damage_Amount *= doDamage_Coefficient_Attacker;
+				if (isAttacker)
+				{
+					default_Damage_Amount *= doDamage_Coefficient_Attacker;
 
-                }
-                else if (isDefender)
-                {
-                    default_Damage_Amount *= doDamage_Coefficient_Defender;
-                }
+				}
+				else if (isDefender)
+				{
+					default_Damage_Amount *= doDamage_Coefficient_Defender;
+				}
 
-                if (collision.collider.gameObject.GetComponent<PhotonView>().IsMine)
-                {          
-                    //Apply Damage to the slower player.
-                    collision.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, default_Damage_Amount);
-                }
-            }         
-        }
-    }
+				if (collision.collider.gameObject.GetComponent<PhotonView>().IsMine)
+				{
+					//Apply Damage to the slower player.
+					collision.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, default_Damage_Amount);
+				}
+			}
+		}
+	}
 
 
-    [PunRPC]
-    public void DoDamage(float _damageAmount)
-    {
-        if (!isDead)
-        {
-            if (isAttacker)
-            {
-                _damageAmount *= getDamaged_Coefficient_Attacker;
+	[PunRPC]
+	public void DoDamage(float _damageAmount)
+	{
+		if (!isDead)
+		{
+			if (isAttacker)
+			{
+				_damageAmount *= getDamaged_Coefficient_Attacker;
 
-                if (_damageAmount > 1000)
-                {
-                    _damageAmount = 400f;
-                }
+				if (_damageAmount > 1000)
+				{
+					_damageAmount = 400f;
+				}
 
-            }
-            else if (isDefender)
-            {
+			}
+			else if (isDefender)
+			{
 
-                _damageAmount *= getDamaged_Coefficient_Defender;
-            }
-            spinnerScript.spinSpeed -= _damageAmount;
-            currentSpinSpeed = spinnerScript.spinSpeed;
+				_damageAmount *= getDamaged_Coefficient_Defender;
+			}
+			spinnerScript.spinSpeed -= _damageAmount;
+			currentSpinSpeed = spinnerScript.spinSpeed;
 
-            spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
-            spinSpeedRatio_Text.text = currentSpinSpeed.ToString("F0") + "/" + startSpinSpeed;
+			spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
+			spinSpeedRatio_Text.text = currentSpinSpeed.ToString("F0") + "/" + startSpinSpeed;
 
-            if (currentSpinSpeed < 100)
-            {
-                //Die
-                Die();
-            }
-        }
+			if (currentSpinSpeed < 100)
+			{
+				//Die
+				Die();
+			}
+		}
 
-    }
+	}
 
-    void Die()
-    {
+	void Die()
+	{
 
-        isDead = true;
+		isDead = true;
 
-        GetComponent<MovementController>().enabled = false;
-        rb.freezeRotation = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+		GetComponent<MovementController>().enabled = false;
+		rb.freezeRotation = false;
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
 
-        spinnerScript.spinSpeed = 0f;
+		spinnerScript.spinSpeed = 0f;
 
-        uI_3D_Gameobject.SetActive(false);
+		uI_3D_Gameobject.SetActive(false);
 
 
-        if (photonView.IsMine)
-        {
-            //countdown for respawn
-            StartCoroutine(ReSpawn());
-        }
+		if (photonView.IsMine)
+		{
+			//countdown for respawn
+			StartCoroutine(ReSpawn());
+		}
 
 
-    }
+	}
 
-    IEnumerator ReSpawn()
-    {
-        GameObject canvasGameobject = GameObject.Find("Canvas");
-        if (deathPanelUIGameobject==null)
-        {
-            deathPanelUIGameobject = Instantiate(deathPanelUIPrefab, canvasGameobject.transform);
+	IEnumerator ReSpawn()
+	{
+		GameObject canvasGameobject = GameObject.Find("Canvas");
+		if (deathPanelUIGameobject == null)
+		{
+			deathPanelUIGameobject = Instantiate(deathPanelUIPrefab, canvasGameobject.transform);
 
-        }
-        else
-        {
-            deathPanelUIGameobject.SetActive(true);
-        }
+		}
+		else
+		{
+			deathPanelUIGameobject.SetActive(true);
+		}
 
-        Text respawnTimeText = deathPanelUIGameobject.transform.Find("RespawnTimeText").GetComponent<Text>();
+		Text respawnTimeText = deathPanelUIGameobject.transform.Find("RespawnTimeText").GetComponent<Text>();
 
-        float respawnTime = 8.0f;
+		float respawnTime = 8.0f;
 
-        respawnTimeText.text = respawnTime.ToString(".00");
+		respawnTimeText.text = respawnTime.ToString(".00");
 
-        while (respawnTime > 0.0f)
-        {
-            yield return new WaitForSeconds(1.0f);
-            respawnTime -= 1.0f;
-            respawnTimeText.text = respawnTime.ToString(".00");
+		while (respawnTime > 0.0f)
+		{
+			yield return new WaitForSeconds(1.0f);
+			respawnTime -= 1.0f;
+			respawnTimeText.text = respawnTime.ToString(".00");
 
-            GetComponent<MovementController>().enabled = false;
+			GetComponent<MovementController>().enabled = false;
 
-        }
+		}
 
-        deathPanelUIGameobject.SetActive(false);
+		deathPanelUIGameobject.SetActive(false);
 
-        GetComponent<MovementController>().enabled = true;
+		GetComponent<MovementController>().enabled = true;
 
-        photonView.RPC("ReBorn",RpcTarget.AllBuffered);
+		photonView.RPC("ReBorn", RpcTarget.AllBuffered);
 
 
-    }
+	}
 
-    [PunRPC]
-    public void ReBorn()
-    {
-        spinnerScript.spinSpeed = startSpinSpeed;
-        currentSpinSpeed = spinnerScript.spinSpeed;
+	[PunRPC]
+	public void ReBorn()
+	{
+		spinnerScript.spinSpeed = startSpinSpeed;
+		currentSpinSpeed = spinnerScript.spinSpeed;
 
 
-        spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
-        spinSpeedRatio_Text.text = currentSpinSpeed + "/" + startSpinSpeed;
+		spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
+		spinSpeedRatio_Text.text = currentSpinSpeed + "/" + startSpinSpeed;
 
-        rb.freezeRotation = true;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+		rb.freezeRotation = true;
+		transform.rotation = Quaternion.Euler(Vector3.zero);
 
-        uI_3D_Gameobject.SetActive(true);
+		uI_3D_Gameobject.SetActive(true);
 
-        isDead = false;
-    }
+		isDead = false;
+	}
 
 
- 
 
 
 
 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        CheckPlayerType();
 
-        rb = GetComponent<Rigidbody>();
+	// Start is called before the first frame update
+	void Start()
+	{
+		CheckPlayerType();
 
-    }
+		rb = GetComponent<Rigidbody>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 }
