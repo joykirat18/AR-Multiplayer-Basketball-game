@@ -148,6 +148,7 @@ public class Shoot : MonoBehaviourPun
 				gameOver.text = "Tie";
 
 			}
+			gameOver.text = "You Lose";
 			Instantiate(gameOver, transform.position, transform.rotation);
 			// Invoke("restart", 2);
 		}
